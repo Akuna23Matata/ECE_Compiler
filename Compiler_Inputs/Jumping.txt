@@ -1,0 +1,69 @@
+//The goal of this program is to test jmp, jmpc, and label
+subr 0 main
+decl one int
+decl zero int
+decl printer int
+
+pushi 1
+pushi 0
+popv zero
+popv one
+
+pushv one
+pushv one
+cmpe
+
+pushv one
+pushv zero
+cmpe
+
+jmpc error
+
+// Target One
+lab target1
+
+printi 1001
+
+jmpc target3
+
+// TargetTwo
+lab target2
+
+printi 2002
+
+pushv zero
+pushv one
+cmplt
+
+jmpc target4
+
+// Target 3
+lab target3
+
+printi 3003
+
+jmp target2
+jmp error
+
+// Target 4
+lab target4
+
+printi 4004
+
+pushv one
+pushv zero
+cmpgt
+
+jmpc finish
+
+// Shouldn't reach here
+lab error
+
+printi 10101010
+
+// End of the program
+lab finish
+
+printi 5005
+
+ret

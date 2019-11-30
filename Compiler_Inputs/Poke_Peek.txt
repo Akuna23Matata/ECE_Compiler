@@ -1,0 +1,49 @@
+// The goal of this program is to test peek and poke
+// Normally you would use negatives to manipulate arguments, but there are none
+// Therefore we are using positive values to manipulate the current stack
+// Usually args are pushed onto stack just below the sp so thats why peek and poke with negatives are used
+subr 0 main
+// Stack 0 - 3
+decl one int
+decl two int
+decl three int
+decl four int
+
+// Stack 4 - 9
+pushi 11111
+pushi 222
+pushi 3333
+pushi 444
+pushi 555
+pushi 666666
+
+// Peek Tests
+peek one 9
+peek two 4
+peek three 6
+peek four 5
+
+printv one
+printv two
+printv three
+printv four
+
+//Poke Tests
+poke 9 three
+poke 8 four
+poke 7 three
+poke 6 two
+poke 5 one
+
+popv four
+printv four
+popv four
+printv four
+popv four
+printv four
+popv four
+printv four
+popv four
+printv four
+
+ret

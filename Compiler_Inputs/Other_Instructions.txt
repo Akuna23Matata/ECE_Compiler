@@ -1,0 +1,59 @@
+// The goal of this program is to test cmpe, cmplt, cmpgt, swp, and popm
+subr 0 main
+decl four int
+decl one int
+decl three int
+decl two int
+
+// one = 111, two = 222, three = 333, four = 444
+pushi 111
+pushi 222
+popv two
+popv one
+pushi 333
+pushi 444
+popv four
+popv three
+
+printv one
+printv two
+printv three
+printv four
+
+// 111 == 222 = 0, store in three and print
+pushv one
+pushv two
+cmpe
+popv three
+printv three
+
+// 111 < 222 = 1, store in three and print
+pushv one
+pushv two
+cmplt
+popv three
+printv three
+
+// 111 > 222 = 0, store in three and print
+pushv one
+pushv two
+cmpgt
+popv three
+printv three
+
+// Push 111, push 222 and pop, push 5 222s and pop 5 222s, push 111. 111 == 111 = 1, store in three and print
+pushv one
+pushv two
+popm 1
+pushv two
+pushv two
+pushv two
+pushv two
+pushv two
+popm 5
+pushv one
+cmpe
+popv three
+printv three
+
+ret

@@ -1,0 +1,11 @@
+// The code always starts in the main
+subr 0 main
+
+// Here we print some ints
+printi 123
+printi 456
+
+printi 789
+
+// It ends at the return
+ret

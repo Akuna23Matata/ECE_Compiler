@@ -1,0 +1,57 @@
+// The goal of this test case is to test add, sub, mul, div, swp
+subr 0 main
+decl one int
+decl two int
+decl three int
+decl four int
+
+// one = 111, two = 222, three = 333, four = 444
+pushi 111
+pushi 222
+pushi 333
+pushi 444
+popv four
+popv three
+popv two
+popv one
+
+// 111 + 444 = 555, store in one and print
+pushv one
+pushv four
+add
+popv one
+printv one
+
+// 333 - 222 = 111, store in one and print
+pushv three
+pushv two
+sub
+popv one
+printv one
+
+// 111 * 111 = 12321, store in four and print
+pushv one
+pushv one
+mul
+popv four
+printv four
+
+// 12321 / 111 = 111, store in three and print
+pushv four
+pushv one
+div
+popv three
+printv three
+
+// 12321 / 111 = 111. store in two and print
+pushv one
+pushv two
+swp
+pushv four
+swp
+div
+popv two
+printv two
+
+// return
+ret

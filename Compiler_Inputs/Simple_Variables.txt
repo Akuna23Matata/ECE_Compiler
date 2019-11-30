@@ -1,0 +1,39 @@
+// The goal of this test is to make basic use of variables
+subr 0 main
+decl one int
+decl two int
+
+// Here put 111 into 'one' and 222 into 'two'.
+pushi 111
+pushi 222
+popv two
+popv one
+
+// Here we print the variables.
+printv one
+printv two
+
+// Here 333, 444, and 555 are pushed onto the stack.
+pushi 333
+pushi 444
+pushi 555
+
+// 555 is popped into 'one' but 444 should override it.
+popv one
+popv one
+
+// Here 444 should be printed twice
+printv one
+printv one
+
+// Here 333 is popped off and printed
+popv one
+printv one
+
+// Push two, pop the value into one and print
+pushv two
+popv one
+printv one
+
+// Return
+ret
