@@ -1,42 +1,31 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Main {
-
-    public static void main(String[] args) {
-        try {
-            List<String> list = readByJavaClassic(args[0]);
-            list.forEach(System.out::println);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static List readByJavaClassic(String fileName) throws IOException {
-        List<String> result = new ArrayList<>();
+    public static void main( String[] args ) throws IOException {
+        ArrayList<String> input = new ArrayList<String>();
         BufferedReader br = null;
+
         try {
-            br = new BufferedReader(new FileReader(fileName));
+            br = new BufferedReader(new FileReader(args[0]));
             String line;
             while ((line = br.readLine()) != null) {
-                result.add(line);
+                input.add(line);
             }
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {
             if (br != null) {
                 br.close();
             }
         }
-        return result;
+
+        Bytecode bc = new Bytecode(input);
+        ArrayList<Integer> output = bc.compile();
+        DataOutputStream outputWriter = new DataOutputStream(new FileOutputStream("output"));
+        for (int i : output) {
+            outputWriter.write(i);
+        }
+        outputWriter.close();
     }
 }
