@@ -19,6 +19,9 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        for(int i = 0; i < list.length; i++){
+            Command cmd = new Command(list[i]);
+        }
     }
 
     private static List readByJavaClassic(String fileName) throws IOException {
